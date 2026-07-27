@@ -22,8 +22,8 @@ export default function FeaturedProducts() {
 
   return (
     <section id="shop" className="bg-ivory-100 py-20 lg:py-28">
-      <div className="container-x" ref={ref}>
-        <div className={`reveal ${visible ? 'is-visible' : ''} flex flex-col items-center text-center`}>
+      <div className="container-x">
+        <div ref={ref} className={`reveal ${visible ? 'is-visible' : ''} flex flex-col items-center text-center`}>
           <p className="eyebrow">Curated for you</p>
           <h2 className="mt-3 font-serif text-3xl font-bold text-wine-900 sm:text-4xl lg:text-5xl">
             Featured Sarees

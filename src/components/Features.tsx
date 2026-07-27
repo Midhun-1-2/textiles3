@@ -12,11 +12,11 @@ export default function Features() {
   const { ref, visible } = useReveal();
   return (
     <section className="border-y border-ivory-300/70 bg-ivory-100">
-      <div ref={ref} className={`container-x grid grid-cols-2 gap-4 py-10 lg:grid-cols-4 lg:gap-8 ${visible ? 'is-visible' : ''} reveal`}>
+      <div ref={ref} className={`container-x grid grid-cols-1 gap-4 py-14 sm:grid-cols-2 sm:py-16 lg:grid-cols-4 lg:gap-6 lg:py-20 ${visible ? 'is-visible' : ''} reveal`}>
         {features.map((f, i) => (
           <div
             key={f.title}
-            className="flex items-start gap-4 rounded-2xl p-4 transition hover:bg-white/60"
+            className="card-surface flex items-center gap-4 p-5 transition hover:-translate-y-1 hover:shadow-card"
             style={{ transitionDelay: `${i * 80}ms` }}
           >
             <span className="grid h-12 w-12 flex-none place-items-center rounded-xl bg-wine-100 text-wine-700">

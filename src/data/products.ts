@@ -50,7 +50,7 @@ export const categories = [
     id: 'cotton',
     name: 'Cotton & Handloom',
     tagline: 'Everyday grace',
-    image: img(2377954, 600, 800),
+    image: img(19664432, 600, 800),
   },
 ];
 
@@ -115,7 +115,7 @@ export const products: Product[] = [
     price: 4200,
     rating: 4.6,
     reviews: 187,
-    image: img(2377954),
+    image: img(19664432),
     badge: 'New',
     colors: ['#1f3a2e', '#e4b33b', '#efe3cd'],
   },
