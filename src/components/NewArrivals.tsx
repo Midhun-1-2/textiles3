@@ -1,7 +1,7 @@
-import { ArrowRight, ShoppingBag, Heart, Eye } from 'lucide-react';
+import { ArrowRight, ShoppingBag, Heart, Eye, Minus, Plus } from 'lucide-react';
 import { useRef } from 'react';
 import { newArrivals, formatINR } from '@/data/products';
-import { addToCart, toggleWishlist, setQuickView, useShop } from '@/store/useShop';
+import { addToCart, removeFromCart, updateQty, toggleWishlist, setQuickView, openCart, useShop } from '@/store/useShop';
 import { useReveal } from '@/hooks/useReveal';
 
 export default function NewArrivals() {
@@ -42,6 +42,7 @@ export default function NewArrivals() {
       >
         {newArrivals.map((p) => {
           const liked = shop.wishlist.includes(p.id);
+          const qty = shop.cart.find((i) => i.id === p.id)?.qty ?? 0;
           return (
             <article
               key={p.id}
@@ -58,9 +59,38 @@ export default function NewArrivals() {
                     <Eye className="h-4 w-4" />
                   </button>
                 </div>
-                <button onClick={() => addToCart(p)} className="absolute inset-x-3 bottom-3 flex translate-y-4 items-center justify-center gap-2 rounded-full bg-wine-800/90 py-2.5 text-sm font-semibold text-ivory-50 opacity-0 backdrop-blur transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                  <ShoppingBag className="h-4 w-4" /> Add to Bag
-                </button>
+                {qty === 0 ? (
+                  <button onClick={() => addToCart(p)} className="absolute inset-x-3 bottom-3 flex translate-y-4 items-center justify-center gap-2 rounded-full bg-wine-800/90 py-2.5 text-sm font-semibold text-ivory-50 opacity-0 backdrop-blur transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <ShoppingBag className="h-4 w-4" /> Add to Bag
+                  </button>
+                ) : (
+                  <div className="absolute inset-x-3 bottom-3 flex translate-y-4 items-center gap-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                    <div className="flex flex-1 items-center justify-between rounded-full bg-wine-800/90 py-1.5 pl-1.5 pr-1.5 backdrop-blur">
+                      <button
+                        onClick={() => (qty <= 1 ? removeFromCart(p.id) : updateQty(p.id, qty - 1))}
+                        aria-label="Decrease quantity"
+                        className="grid h-8 w-8 place-items-center rounded-full text-ivory-50 transition hover:bg-wine-700"
+                      >
+                        <Minus className="h-3.5 w-3.5" />
+                      </button>
+                      <span className="text-sm font-semibold text-ivory-50">{qty}</span>
+                      <button
+                        onClick={() => addToCart(p)}
+                        aria-label="Increase quantity"
+                        className="grid h-8 w-8 place-items-center rounded-full text-ivory-50 transition hover:bg-wine-700"
+                      >
+                        <Plus className="h-3.5 w-3.5" />
+                      </button>
+                    </div>
+                    <button
+                      onClick={openCart}
+                      aria-label="View cart"
+                      className="grid h-9 w-9 flex-none place-items-center rounded-full bg-white/90 text-wine-800 backdrop-blur transition hover:bg-white"
+                    >
+                      <ShoppingBag className="h-4 w-4" />
+                    </button>
+                  </div>
+                )}
               </div>
               <div className="p-4">
                 <p className="text-[11px] uppercase tracking-wider text-gold-600">{p.category}</p>

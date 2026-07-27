@@ -10,7 +10,7 @@ type ShopState = {
   quickView: Product | null;
 };
 
-const state: ShopState = {
+let state: ShopState = {
   cart: [],
   wishlist: [],
   isCartOpen: false,
@@ -18,15 +18,13 @@ const state: ShopState = {
 };
 
 const listeners = new Set<() => void>();
-let version = 0;
 
 function emit() {
-  version += 1;
   listeners.forEach((l) => l());
 }
 
 function set(partial: Partial<ShopState>) {
-  Object.assign(state, partial);
+  state = { ...state, ...partial };
   emit();
 }
 
@@ -35,9 +33,8 @@ export function addToCart(p: Product) {
   if (existing) {
     set({ cart: state.cart.map((i) => (i.id === p.id ? { ...i, qty: i.qty + 1 } : i)) });
   } else {
-    set({ cart: [...state.cart, { ...p, qty: 1 }] });
+    set({ cart: [...state.cart, { ...p, qty: 1 }], isCartOpen: true });
   }
-  set({ isCartOpen: true });
 }
 
 export function removeFromCart(id: string) {
