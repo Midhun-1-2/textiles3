@@ -1,6 +1,7 @@
 import { ShoppingBag, Heart, Search, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { cartCount, openCart, useShop } from '@/store/useShop';
+import logo from '@/assets/logo.png';
 
 const links = [
   { label: 'Home', href: '#home' },
@@ -154,9 +155,5 @@ export default function Navbar() {
 }
 
 function Logo() {
-  return (
-    <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-wine-600 to-wine-800 text-gold-300 shadow-soft">
-      <span className="font-serif text-lg font-bold">N</span>
-    </span>
-  );
+  return <img src={logo} alt="Niya Collections" className="h-11 w-11 shadow-soft" />;
 }

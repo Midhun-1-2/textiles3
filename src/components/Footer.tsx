@@ -1,4 +1,5 @@
 import { Instagram, Facebook, Youtube, Mail, Phone, MapPin, ArrowRight } from 'lucide-react';
+import logo from '@/assets/logo.png';
 
 const cols = [
   {
@@ -22,9 +23,7 @@ export default function Footer() {
         {/* brand */}
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2">
-            <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-wine-900">
-              <span className="font-serif text-lg font-bold">N</span>
-            </span>
+            <img src={logo} alt="Niya Collections" className="h-11 w-11" />
             <span className="flex flex-col leading-none">
               <span className="font-serif text-xl font-bold text-ivory-50">Niya</span>
               <span className="text-[10px] uppercase tracking-[0.3em] text-gold-400">Collections</span>
