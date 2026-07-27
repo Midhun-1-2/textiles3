@@ -7,6 +7,7 @@ type ShopState = {
   cart: CartItem[];
   wishlist: string[];
   isCartOpen: boolean;
+  isWishlistOpen: boolean;
   quickView: Product | null;
 };
 
@@ -14,6 +15,7 @@ let state: ShopState = {
   cart: [],
   wishlist: [],
   isCartOpen: false,
+  isWishlistOpen: false,
   quickView: null,
 };
 
@@ -58,6 +60,12 @@ export function openCart() {
 }
 export function closeCart() {
   set({ isCartOpen: false });
+}
+export function openWishlist() {
+  set({ isWishlistOpen: true });
+}
+export function closeWishlist() {
+  set({ isWishlistOpen: false });
 }
 export function setQuickView(p: Product | null) {
   set({ quickView: p });

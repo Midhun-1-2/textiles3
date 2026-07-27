@@ -1,6 +1,6 @@
-import { ShoppingBag, Heart, Search, Menu, X } from 'lucide-react';
+import { ShoppingBag, Heart, Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { cartCount, openCart, useShop } from '@/store/useShop';
+import { cartCount, openCart, openWishlist, useShop } from '@/store/useShop';
 import logo from '@/assets/logo.png';
 
 const links = [
@@ -69,10 +69,11 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-1 sm:gap-2">
-            <button className="hidden h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:bg-ivory-200 hover:text-wine-700 sm:flex" aria-label="Search">
-              <Search className="h-5 w-5" />
-            </button>
-            <button className="relative hidden h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:bg-ivory-200 hover:text-wine-700 sm:flex" aria-label="Wishlist">
+            <button
+              onClick={openWishlist}
+              className="relative flex h-10 w-10 items-center justify-center rounded-full text-ink/70 transition hover:bg-ivory-200 hover:text-wine-700"
+              aria-label="Wishlist"
+            >
               <Heart className="h-5 w-5" />
               {shop.wishlist.length > 0 && (
                 <span className="absolute right-1 top-1 h-4 w-4 rounded-full bg-wine-600 text-[10px] font-bold text-ivory-50 grid place-items-center">
@@ -138,16 +139,6 @@ export default function Navbar() {
               </li>
             ))}
           </ul>
-          <div className="mt-auto border-t border-ivory-300 p-4">
-            <div className="flex items-center gap-2 px-4 py-3">
-              <button className="flex flex-1 items-center justify-center gap-2 rounded-full border border-ivory-300 py-2.5 text-sm font-medium text-ink/70">
-                <Search className="h-4 w-4" /> Search
-              </button>
-              <button className="flex flex-1 items-center justify-center gap-2 rounded-full border border-ivory-300 py-2.5 text-sm font-medium text-ink/70">
-                <Heart className="h-4 w-4" /> Wishlist
-              </button>
-            </div>
-          </div>
         </aside>
       </div>
     </>
