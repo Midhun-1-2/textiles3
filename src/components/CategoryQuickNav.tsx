@@ -7,7 +7,8 @@ export default function CategoryQuickNav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setShow(window.scrollY > 600);
+    const onScroll = () => setShow(window.scrollY > 120);
+    onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -19,14 +20,16 @@ export default function CategoryQuickNav() {
     };
   }, [open]);
 
-  if (!show && !open) return null;
-
   return (
     <div className="sm:hidden">
       <button
         onClick={() => setOpen((v) => !v)}
         aria-label="Browse categories"
-        className="fixed bottom-24 right-6 z-40 grid h-12 w-12 place-items-center rounded-full bg-wine-800 text-ivory-50 shadow-card transition-all hover:bg-wine-700 animate-scale-in"
+        aria-hidden={!show}
+        tabIndex={show ? 0 : -1}
+        className={`fixed bottom-24 right-6 z-40 grid h-12 w-12 place-items-center rounded-full bg-wine-800 text-ivory-50 shadow-card transition-all duration-300 hover:bg-wine-700 ${
+          show ? 'translate-y-0 scale-100 opacity-100' : 'pointer-events-none translate-y-4 scale-75 opacity-0'
+        }`}
       >
         <LayoutGrid className="h-5 w-5" />
       </button>
