@@ -1,6 +1,6 @@
 import { X, Plus, Minus, Trash2, ShoppingBag } from 'lucide-react';
 import { useEffect } from 'react';
-import { useShop, removeFromCart, updateQty, cartTotal, closeCart } from '@/store/useShop';
+import { useShop, removeFromCart, updateQty, updateCartColor, cartTotal, closeCart } from '@/store/useShop';
 import { formatINR } from '@/data/products';
 
 export default function CartDrawer() {
@@ -65,6 +65,22 @@ export default function CartDrawer() {
                         <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
+                    {item.colors.length > 1 && (
+                      <div className="mt-1.5 flex items-center gap-1.5">
+                        {item.colors.map((c) => (
+                          <button
+                            key={c}
+                            onClick={() => updateCartColor(item.id, c)}
+                            aria-label="Change colour"
+                            aria-pressed={item.color === c}
+                            className={`h-4 w-4 flex-none rounded-full ring-2 ring-offset-1 ring-offset-white transition ${
+                              item.color === c ? 'ring-wine-700 scale-110' : 'ring-ivory-300 hover:ring-gold-300'
+                            }`}
+                            style={{ backgroundColor: c }}
+                          />
+                        ))}
+                      </div>
+                    )}
                     <div className="mt-auto flex items-center justify-between">
                       <div className="flex items-center gap-1 rounded-full border border-ivory-300">
                         <button

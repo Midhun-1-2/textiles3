@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react';
 import type { Product } from '@/data/products';
 
-export type CartItem = Product & { qty: number };
+export type CartItem = Product & { qty: number; color: string };
 
 type ShopState = {
   cart: CartItem[];
@@ -30,12 +30,16 @@ function set(partial: Partial<ShopState>) {
   emit();
 }
 
-export function addToCart(p: Product) {
+export function addToCart(p: Product, color?: string) {
   const existing = state.cart.find((i) => i.id === p.id);
   if (existing) {
-    set({ cart: state.cart.map((i) => (i.id === p.id ? { ...i, qty: i.qty + 1 } : i)) });
+    set({
+      cart: state.cart.map((i) =>
+        i.id === p.id ? { ...i, qty: i.qty + 1, ...(color ? { color } : {}) } : i,
+      ),
+    });
   } else {
-    set({ cart: [...state.cart, { ...p, qty: 1 }] });
+    set({ cart: [...state.cart, { ...p, qty: 1, color: color ?? p.colors[0] }] });
   }
 }
 
@@ -45,6 +49,10 @@ export function removeFromCart(id: string) {
 
 export function updateQty(id: string, qty: number) {
   set({ cart: state.cart.map((i) => (i.id === id ? { ...i, qty: Math.max(1, qty) } : i)) });
+}
+
+export function updateCartColor(id: string, color: string) {
+  set({ cart: state.cart.map((i) => (i.id === id ? { ...i, color } : i)) });
 }
 
 export function toggleWishlist(id: string) {
