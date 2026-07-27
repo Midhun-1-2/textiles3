@@ -211,33 +211,6 @@ export const newArrivals: Product[] = [
   },
 ];
 
-export const testimonials = [
-  {
-    id: 't1',
-    name: 'Priya Sharma',
-    location: 'Mumbai',
-    rating: 5,
-    text: 'The Kanjivaram I received is even more stunning in person. The zari work is exquisite and the drape is flawless. Niya Collections has become my go-to for every occasion.',
-    avatar: 'https://images.pexels.com/photos/1580271/pexels-photo-1580271.jpeg?auto=compress&cs=tinysrgb&w=160&h=160&fit=crop',
-  },
-  {
-    id: 't2',
-    name: 'Ananya Iyer',
-    location: 'Bengaluru',
-    rating: 5,
-    text: 'My wedding saree from Niya was a dream. The craftsmanship, the colors, the packaging — everything felt premium and made me feel truly special.',
-    avatar: 'https://images.pexels.com/photos/1102341/pexels-photo-1102341.jpeg?auto=compress&cs=tinysrgb&w=160&h=160&fit=crop',
-  },
-  {
-    id: 't3',
-    name: 'Ritika Banerjee',
-    location: 'Kolkata',
-    rating: 5,
-    text: 'I ordered a Banarasi for Durga Puja and was blown away by the quality. Delivered on time, beautifully wrapped, and the silk feels luxurious.',
-    avatar: 'https://images.pexels.com/photos/1193942/pexels-photo-1193942.jpeg?auto=compress&cs=tinysrgb&w=160&h=160&fit=crop',
-  },
-];
-
 export const formatINR = (n: number) =>
   new Intl.NumberFormat('en-IN', {
     style: 'currency',

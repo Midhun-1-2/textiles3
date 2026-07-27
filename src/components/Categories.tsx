@@ -18,7 +18,25 @@ export default function Categories() {
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-6">
+        {/* Mobile: circular avatar grid */}
+        <div className="mt-10 grid grid-cols-4 gap-x-3 gap-y-6 sm:hidden">
+          {categories.map((c) => (
+            <a key={c.id} href="#shop" className="group flex flex-col items-center gap-2 text-center">
+              <span className="h-16 w-16 overflow-hidden rounded-full ring-2 ring-gold-300/70 shadow-soft transition-transform duration-300 group-active:scale-95">
+                <img
+                  src={c.image}
+                  alt={c.name}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </span>
+              <span className="text-[11px] font-medium leading-tight text-ink/80">{c.name}</span>
+            </a>
+          ))}
+        </div>
+
+        {/* Tablet & desktop: image cards (unchanged) */}
+        <div className="mt-12 hidden grid-cols-2 gap-4 sm:grid sm:gap-6 md:grid-cols-3 lg:grid-cols-6">
           {categories.map((c, i) => (
             <a
               key={c.id}

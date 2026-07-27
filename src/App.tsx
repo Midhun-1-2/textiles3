@@ -5,12 +5,12 @@ import FeaturedProducts from '@/components/FeaturedProducts';
 import CollectionSpotlight from '@/components/CollectionSpotlight';
 import NewArrivals from '@/components/NewArrivals';
 import Features from '@/components/Features';
-import Testimonials from '@/components/Testimonials';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
 import CartDrawer from '@/components/CartDrawer';
 import QuickView from '@/components/QuickView';
 import ScrollTop from '@/components/ScrollTop';
+import CategoryQuickNav from '@/components/CategoryQuickNav';
 
 export default function App() {
   return (
@@ -23,13 +23,13 @@ export default function App() {
         <CollectionSpotlight />
         <NewArrivals />
         <Features />
-        <Testimonials />
         <Newsletter />
       </main>
       <Footer />
       <CartDrawer />
       <QuickView />
       <ScrollTop />
+      <CategoryQuickNav />
     </div>
   );
 }
