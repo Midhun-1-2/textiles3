@@ -29,7 +29,7 @@ export default function QuickView() {
   return (
     <div className="fixed inset-0 z-[80] overflow-y-auto" aria-modal="true" role="dialog">
       <div className="fixed inset-0 bg-ink/60 backdrop-blur-sm animate-fade-in" onClick={() => setQuickView(null)} />
-      <div className="relative flex min-h-full items-start justify-center sm:items-center sm:p-4">
+      <div className="relative flex min-h-full items-center justify-center sm:p-4">
         <div className="relative grid w-full overflow-hidden bg-ivory-50 shadow-card animate-scale-in sm:max-w-4xl sm:rounded-3xl md:grid-cols-2">
           <button
             onClick={() => setQuickView(null)}
