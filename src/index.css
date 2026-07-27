@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-ivory-50 text-ink font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-gold-200 text-wine-800;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.32em] text-gold-600;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold-400 px-7 py-3 text-sm font-semibold uppercase tracking-wider text-wine-900 transition-all duration-300 hover:bg-gold-300 hover:shadow-glow focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-300 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-wine-300 bg-transparent px-7 py-3 text-sm font-semibold uppercase tracking-wider text-wine-700 transition-all duration-300 hover:bg-wine-700 hover:text-ivory-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-wine-300 focus-visible:ring-offset-2 focus-visible:ring-offset-ivory-50;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-ink/70 transition-colors hover:text-wine-700;
+  }
+
+  .card-surface {
+    @apply rounded-2xl border border-ivory-300/60 bg-white/80 shadow-soft backdrop-blur-sm;
+  }
+
+  .divider-ornate {
+    @apply mx-auto flex max-w-xs items-center gap-3 text-gold-400;
+  }
+
+  .input-elegant {
+    @apply w-full rounded-full border border-ivory-300 bg-white/70 px-5 py-3 text-sm text-ink placeholder:text-ink/40 transition focus:border-gold-300 focus:outline-none focus:ring-2 focus:ring-gold-200/60;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-ivory-300 bg-white/70 px-3 py-1 text-xs font-medium text-ink/70 transition hover:border-gold-300 hover:text-wine-700;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-shimmer {
+    background-image: linear-gradient(110deg, #efe3cd 8%, #f7f0e3 18%, #efe3cd 33%);
+    background-size: 200% 100%;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-spin::-webkit-outer-spin-button,
+  .no-spin::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
