@@ -35,7 +35,7 @@ export function addToCart(p: Product) {
   if (existing) {
     set({ cart: state.cart.map((i) => (i.id === p.id ? { ...i, qty: i.qty + 1 } : i)) });
   } else {
-    set({ cart: [...state.cart, { ...p, qty: 1 }], isCartOpen: true });
+    set({ cart: [...state.cart, { ...p, qty: 1 }] });
   }
 }
 

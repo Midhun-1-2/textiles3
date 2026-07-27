@@ -67,7 +67,11 @@ export default function CartDrawer() {
                     </div>
                     <div className="mt-auto flex items-center justify-between">
                       <div className="flex items-center gap-1 rounded-full border border-ivory-300">
-                        <button onClick={() => updateQty(item.id, item.qty - 1)} aria-label="Decrease" className="grid h-7 w-7 place-items-center text-ink/70 hover:text-wine-700">
+                        <button
+                          onClick={() => (item.qty <= 1 ? removeFromCart(item.id) : updateQty(item.id, item.qty - 1))}
+                          aria-label="Decrease"
+                          className="grid h-7 w-7 place-items-center text-ink/70 hover:text-wine-700"
+                        >
                           <Minus className="h-3.5 w-3.5" />
                         </button>
                         <span className="w-6 text-center text-sm font-medium">{item.qty}</span>

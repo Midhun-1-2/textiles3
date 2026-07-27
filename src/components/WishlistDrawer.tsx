@@ -1,4 +1,4 @@
-import { X, Heart, ShoppingBag, Trash2 } from 'lucide-react';
+import { X, Heart, ShoppingBag, Check, Trash2 } from 'lucide-react';
 import { useEffect } from 'react';
 import { useShop, toggleWishlist, addToCart, closeWishlist } from '@/store/useShop';
 import { products, newArrivals, formatINR, type Product } from '@/data/products';
@@ -57,35 +57,50 @@ export default function WishlistDrawer() {
           </div>
         ) : (
           <div className="flex-1 space-y-4 overflow-y-auto px-6 py-5">
-            {items.map((item) => (
-              <div key={item.id} className="flex gap-4 rounded-2xl border border-ivory-300/60 bg-white p-3">
-                <img src={item.image} alt={item.name} className="h-24 w-20 flex-none rounded-lg object-cover" />
-                <div className="flex flex-1 flex-col">
-                  <div className="flex items-start justify-between gap-2">
-                    <div>
-                      <h3 className="font-serif text-sm font-semibold text-wine-900 leading-tight">{item.name}</h3>
-                      <p className="text-xs text-ink/50">{item.fabric}</p>
+            {items.map((item) => {
+              const inCart = shop.cart.some((c) => c.id === item.id);
+              return (
+                <div key={item.id} className="flex gap-4 rounded-2xl border border-ivory-300/60 bg-white p-3">
+                  <img src={item.image} alt={item.name} className="h-24 w-20 flex-none rounded-lg object-cover" />
+                  <div className="flex flex-1 flex-col">
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <h3 className="font-serif text-sm font-semibold text-wine-900 leading-tight">{item.name}</h3>
+                        <p className="text-xs text-ink/50">{item.fabric}</p>
+                      </div>
+                      <button
+                        onClick={() => toggleWishlist(item.id)}
+                        aria-label="Remove from wishlist"
+                        className="grid h-7 w-7 place-items-center rounded-full text-ink/40 hover:bg-blush-100 hover:text-wine-600"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </button>
                     </div>
-                    <button
-                      onClick={() => toggleWishlist(item.id)}
-                      aria-label="Remove from wishlist"
-                      className="grid h-7 w-7 place-items-center rounded-full text-ink/40 hover:bg-blush-100 hover:text-wine-600"
-                    >
-                      <Trash2 className="h-4 w-4" />
-                    </button>
-                  </div>
-                  <div className="mt-auto flex items-center justify-between">
-                    <span className="font-serif text-base font-bold text-wine-800">{formatINR(item.price)}</span>
-                    <button
-                      onClick={() => addToCart(item)}
-                      className="flex items-center gap-1.5 rounded-full bg-wine-800 px-3 py-1.5 text-xs font-semibold text-ivory-50 transition hover:bg-wine-700"
-                    >
-                      <ShoppingBag className="h-3.5 w-3.5" /> Add to Bag
-                    </button>
+                    <div className="mt-auto flex items-center justify-between">
+                      <span className="font-serif text-base font-bold text-wine-800">{formatINR(item.price)}</span>
+                      <button
+                        onClick={() => addToCart(item)}
+                        className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold transition ${
+                          inCart
+                            ? 'bg-ivory-200 text-wine-700 hover:bg-ivory-300'
+                            : 'bg-wine-800 text-ivory-50 hover:bg-wine-700'
+                        }`}
+                      >
+                        {inCart ? (
+                          <>
+                            <Check className="h-3.5 w-3.5" /> Added
+                          </>
+                        ) : (
+                          <>
+                            <ShoppingBag className="h-3.5 w-3.5" /> Add to Bag
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
       </aside>
